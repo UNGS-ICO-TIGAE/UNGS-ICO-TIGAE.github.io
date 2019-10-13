@@ -29,7 +29,8 @@
 	<div style="position: absolute;padding: 6px 6px 1px 6px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);border-radius: 5px;color: #333; background: #fff; left: 24px; bottom: 24px;"><a href="#"><img src="logo.png" alt=""></a></div>
 	<div style="position: absolute; right: 24px; top: 24px;">
 	<script>		
-		var bounds = new L.LatLngBounds([-34.67465,-58.75939],[-34.49164,-58.49284]);
+		//var bounds = new L.LatLngBounds([-23.917318,-62.177269],[-31.137956,-48.245339]); //-25.592357, -54.593730
+		//var map = L.map('map')
 
 		var map = L.map
 		(
@@ -39,16 +40,16 @@
 				minZoom : 1,
 				inertia : false,
 			}
-		);
+		).setView([-27.386414, -55.907229], 8);;
 
-		map.fitBounds(bounds);
+		//map.fitBounds(bounds);
 
 		var OSM = L.tileLayer
 		(
 			'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', 
 			{
 				maxZoom: 15,
-				attribution: '&copy; 2017 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				attribution: '&copy; 2019 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}
 		)
 		.addTo(map);
@@ -59,7 +60,7 @@
 			'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', 
 			{
 				maxZoom: 15,
-				attribution: '&copy; 2017 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				attribution: '&copy; 2019 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}
 		)
 		.addTo(map);
