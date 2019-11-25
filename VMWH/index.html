@@ -4,6 +4,12 @@
 <head>
 	<title>Producto</title>
 	<meta charset="utf-8" />
+	<!-- 
+		(c)2019 Universidad Nacional de General Sarmiento, 
+		Instituto del Conurbano, 
+		Tecnologías de la Información Geográfica y Análisis Espacial 
+		por Carlos N. Jiménez | cnjimenez @ ungs . edu . ar
+		-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="leaflet.css" />
 	<link rel="stylesheet" href="Control.Opacity.css">
@@ -16,6 +22,7 @@
 	
 	<script src="jquery-1.9.1.js"></script>
     <script src="jquery-ui-1.10.3.custom.min.js"></script>
+	
 	<script src="leaflet.js"></script>
 	<script src="Control.Opacity.js"></script>
 	<script src="leaflet-side-by-side.js"></script>
@@ -29,8 +36,6 @@
 	<div style="position: absolute;padding: 6px 6px 1px 6px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);border-radius: 5px;color: #333; background: #fff; left: 24px; bottom: 24px;"><a href="#"><img src="logo.png" alt=""></a></div>
 	<div style="position: absolute; right: 24px; top: 24px;">
 	<script>		
-		//var bounds = new L.LatLngBounds([-23.917318,-62.177269],[-31.137956,-48.245339]); //-25.592357, -54.593730
-		//var map = L.map('map')
 
 		var map = L.map
 		(
@@ -42,7 +47,6 @@
 			}
 		).setView([-27.386414, -55.907229], 8);;
 
-		//map.fitBounds(bounds);
 
 		var OSM = L.tileLayer
 		(
@@ -65,22 +69,24 @@
 		)
 		.addTo(map);
 
-		var campoDeMayo = L.tileLayer
+		var oneHundredLayer = L.tileLayer
 		(
-			'http://ideconurbano.ungs.edu.ar/geoserver/gwc/service/gmaps?layers=IDE:_1_50k&zoom={z}&x={x}&y={y}&format=image/png8',
+			
+			'Tiles/1-100k/{z}/{x}/{y}.png', 
 			{
-				maxZoom: 15,
-				attribution: '<a href="http://www.ungs.edu.ar">UNGS</a> , <a href="http://www.ign.gob.ar">IGN</a>',
+
+				tms: true
 			}
+	
 		)
 		.addTo(map);
 
-		var campoDeMayo2 = L.tileLayer
+		var fiveHundredLayer = L.tileLayer
 		(
-			'http://ideconurbano.ungs.edu.ar/geoserver/gwc/service/gmaps?layers=IDE:_1_100k&zoom={z}&x={x}&y={y}&format=image/png8',
+			'Tiles/1-500k/{z}/{x}/{y}.png', 
 			{
-				maxZoom: 15,
-				attribution: '<a href="http://www.ungs.edu.ar">UNGS</a> , <a href="http://www.ign.gob.ar">IGN</a>',
+		
+				tms: true
 			}
 		);
 
@@ -91,8 +97,8 @@
 		
 		var  baseLayers = 
 		{
-			'1:50.000': campoDeMayo,
-			'1:100.000': campoDeMayo2,
+			'1:500.000': fiveHundredLayer,
+			'1:100.000': oneHundredLayer,
 		}
 	
 		var control = L.control.activeLayers(baseLayers,overlayLayers)
@@ -106,19 +112,18 @@
 			
 		var oS = new L.Control.opacitySlider();
 		map.addControl(oS);
-		oS.setOpacityLayer(campoDeMayo);
+		oS.setOpacityLayer(oneHundredLayer);
 		map.on('baselayerchange', function() 
 			{
-				if (control.getActiveBaseLayer().name == "1:100.000")
+				if (control.getActiveBaseLayer().name == "1:500.000")
 				{
-				campoDeMayo2.setOpacity(slider_value) = ui.value / 100;
-					oS.setOpacityLayer(campoDeMayo2);
+					oS.setOpacityLayer(fiveHundredLayer);
 					
 				}
 				else
 				{
 				
-					oS.setOpacityLayer(campoDeMayo);
+					oS.setOpacityLayer(oneHundredLayer);
 				}
 			}
 		 );
