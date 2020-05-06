@@ -89,6 +89,24 @@
 				tms: true
 			}
 		);
+		
+		var tile1760 = L.tileLayer
+		(
+			'file:///Tiles/RC1760/{z}/{x}/{y}.png', 
+			{
+		
+				tms: true
+			}
+		);
+		
+		var tile1865 = L.tileLayer
+		(
+			'file:///Tiles/WK1865/{z}/{x}/{y}.png', 
+			{
+		
+				tms: true
+			}
+		);
 
 		var overlayLayers =
 		{
@@ -99,6 +117,8 @@
 		{
 			'1:500.000': fiveHundredLayer,
 			'1:100.000': oneHundredLayer,
+			'1760': tile1760,
+			'1865': tile1865
 		}
 	
 		var control = L.control.activeLayers(baseLayers,overlayLayers)
@@ -120,10 +140,20 @@
 					oS.setOpacityLayer(fiveHundredLayer);
 					
 				}
-				else
+				else if (control.getActiveBaseLayer().name == "1:100.000")
 				{
 				
 					oS.setOpacityLayer(oneHundredLayer);
+				}
+				else if (control.getActiveBaseLayer().name == "1760")
+				{
+				
+					oS.setOpacityLayer(tile1760);
+				}
+				else
+				{
+				
+					oS.setOpacityLayer(tile1865);
 				}
 			}
 		 );
