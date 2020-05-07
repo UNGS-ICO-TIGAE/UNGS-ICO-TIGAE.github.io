@@ -107,6 +107,15 @@
 				tms: false
 			}
 		);
+		
+		var tile1881 = L.tileLayer
+		(
+			'/VMWH/Tiles/AC1881/{z}/{x}/{y}.png', 
+			{
+		
+				tms: false
+			}
+		);
 
 		var overlayLayers =
 		{
@@ -118,7 +127,8 @@
 			'1:500.000': fiveHundredLayer,
 			'1:100.000': oneHundredLayer,
 			'1760': tile1760,
-			'1865': tile1865
+			'1865': tile1865,
+			'1881': tile1881,
 		}
 	
 		var control = L.control.activeLayers(baseLayers,overlayLayers)
@@ -150,10 +160,15 @@
 				
 					oS.setOpacityLayer(tile1760);
 				}
-				else
+				else if (control.getActiveBaseLayer().name == "1865")
 				{
 				
 					oS.setOpacityLayer(tile1865);
+				}
+				else
+				{
+				
+					oS.setOpacityLayer(tile1881);
 				}
 			}
 		 );
