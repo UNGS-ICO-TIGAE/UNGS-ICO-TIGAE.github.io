@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="leaflet.css" />
 	<link rel="stylesheet" href="Control.Opacity.css">
+	<link rel="stylesheet" href="leaflet.groupedlayercontrol.css" />
     <link rel="stylesheet" href="jquery-ui-1.10.3.custom.min.css" />
 	
 	<style>
@@ -27,6 +28,7 @@
 	<script src="Control.Opacity.js"></script>
 	<script src="leaflet-side-by-side.js"></script>
 	<script src="ActiveLayers.js"></script>
+	<script src="leaflet.groupedlayercontrol.js"></script>
 </head>
 <body>
 	<div id="map" style="width: 100%; height: 100%;"></div>
@@ -128,7 +130,7 @@
 
 		var overlayLayers =
 		{
-			'Comparar': OSM
+			//'Comparar': OSM
 		}
 		
 		var  baseLayers = 
@@ -141,8 +143,31 @@
 			'1750': tile1750,
 		}
 	
-		var control = L.control.activeLayers(baseLayers,overlayLayers)
-		control.addTo(map);
+		//var control = L.control.activeLayers(baseLayers,overlayLayers)
+		//control.addTo(map);
+		
+		 var groupedOverlays = {
+			"Cartas": {
+				'1:500.000': fiveHundredLayer,
+				'1:100.000': oneHundredLayer
+			},
+			"Mapas": {
+				'1760': tile1760,
+				'1865': tile1865,
+				'1881': tile1881,
+				'1750': tile1750
+			}
+		}
+		
+		 var options = {
+      // Make the "Landmarks" group exclusive (use radio inputs)
+      exclusiveGroups: ["Cartas","Mapas"],
+      // Show a checkbox next to non-exclusive group labels for toggling all
+      groupCheckboxes: true
+    };
+	
+	var control = L.control.groupedLayers(overlayLayers, groupedOverlays,options)
+	control.addTo(map);
 
 		L.control.sideBySide
 		(
