@@ -13,7 +13,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="leaflet.css" />
 	<link rel="stylesheet" href="Control.Opacity.css">
-	<link rel="stylesheet" href="leaflet.groupedlayercontrol.css" />
     <link rel="stylesheet" href="jquery-ui-1.10.3.custom.min.css" />
 	
 	<style>
@@ -28,11 +27,11 @@
 	<script src="Control.Opacity.js"></script>
 	<script src="leaflet-side-by-side.js"></script>
 	<script src="ActiveLayers.js"></script>
-	<script src="leaflet.groupedlayercontrol.js"></script>
 </head>
 <body>
 	<div id="map" style="width: 100%; height: 100%;"></div>
-
+<link rel="stylesheet" href="L.Control.Layers.Tree.css" />
+    <script src="L.Control.Layers.Tree.js"></script>
 	
 	
 	<div style="position: absolute;padding: 6px 6px 1px 6px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);border-radius: 5px;color: #333; background: #fff; left: 24px; bottom: 24px;"><a href="#"><img src="logo.png" alt=""></a></div>
@@ -74,7 +73,7 @@
 		var oneHundredLayer = L.tileLayer
 		(
 			
-			'/VMWH/Tiles/1-100K/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/1-100K/{z}/{x}/{y}.png', 
 			{
 
 				tms: true
@@ -85,7 +84,7 @@
 
 		var fiveHundredLayer = L.tileLayer
 		(
-			'/VMWH/Tiles/1-500K/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/1-500K/{z}/{x}/{y}.png', 
 			{
 		
 				tms: true
@@ -94,7 +93,7 @@
 		
 		var tile1760 = L.tileLayer
 		(
-			'/VMWH/Tiles/RC1760/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/RC1760/{z}/{x}/{y}.png', 
 			{
 		
 				tms: false
@@ -103,7 +102,7 @@
 		
 		var tile1865 = L.tileLayer
 		(
-			'/VMWH/Tiles/WK1865/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/WK1865/{z}/{x}/{y}.png', 
 			{
 		
 				tms: false
@@ -112,7 +111,7 @@
 		
 		var tile1881 = L.tileLayer
 		(
-			'/VMWH/Tiles/AC1881/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/AC1881/{z}/{x}/{y}.png', 
 			{
 		
 				tms: false
@@ -121,7 +120,7 @@
 		
 		var tile1750 = L.tileLayer
 		(
-			'/VMWH/Tiles/JC1750/{z}/{x}/{y}.png', 
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/JC1750/{z}/{x}/{y}.png', 
 			{
 		
 				tms: false
@@ -142,36 +141,36 @@
 			'1881': tile1881,
 			'1750': tile1750,
 		}
-	
-		var control = L.control.activeLayers(baseLayers,overlayLayers)
-		control.addTo(map);
 		
-		 /*var groupedOverlays = {
-			"Cartas": {
-				'1:500.000': fiveHundredLayer,
-				'1:100.000': oneHundredLayer
-			},
-			"Mapas": {
-				'1760': tile1760,
-				'1865': tile1865,
-				'1881': tile1881,
-				'1750': tile1750
-			}
-		}*/
-		
-		/* var options = {
-      // Make the "Landmarks" group exclusive (use radio inputs)
-      exclusiveGroups: ["Cartas","Mapas"],
-      // Show a checkbox next to non-exclusive group labels for toggling all
-      groupCheckboxes: true
-    };
-	
-	var control = L.control.groupedLayers(overlayLayers, groupedOverlays,options)
-	control.addTo(map);*/
+		////
+		// The tree containing the layers
+        var baseTree = [
+            {
+                label: 'Cartas',
+                children: [
+                    {label: '1:500.000', layer: fiveHundredLayer, name: ''},
+                    {label: '1:100.000', layer: oneHundredLayer, name: ''},
+                   
+                ]
+            },
+            {
+                label: 'Mapas',
+                children: [
+					{label: '1750', layer: tile1760},
+                    {label: '1760', layer: tile1865},
+                    {label: '1865', layer: tile1881},
+					{label: '1865', layer: tile1750}
+                ]
+            },
+        ];
 
+		////
+		var control = L.control.activeLayers(baseLayers,overlayLayers)
+		//control.addTo(map);
+		L.control.layers.tree(baseTree).addTo(map);
 		L.control.sideBySide
 		(
-			baseLayers,
+			baseTree,
 			OSM
 		).addTo(map);
 			
