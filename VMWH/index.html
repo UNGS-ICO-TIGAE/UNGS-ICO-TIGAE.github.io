@@ -130,7 +130,7 @@
 
 		var overlayLayers =
 		{
-			//'Comparar': OSM
+			'Comparar': OSM
 		}
 		
 		var  baseLayers = 
@@ -143,10 +143,10 @@
 			'1750': tile1750,
 		}
 	
-		//var control = L.control.activeLayers(baseLayers,overlayLayers)
-		//control.addTo(map);
+		var control = L.control.activeLayers(baseLayers,overlayLayers)
+		control.addTo(map);
 		
-		 var groupedOverlays = {
+		 /*var groupedOverlays = {
 			"Cartas": {
 				'1:500.000': fiveHundredLayer,
 				'1:100.000': oneHundredLayer
@@ -157,9 +157,9 @@
 				'1881': tile1881,
 				'1750': tile1750
 			}
-		}
+		}*/
 		
-		 var options = {
+		/* var options = {
       // Make the "Landmarks" group exclusive (use radio inputs)
       exclusiveGroups: ["Cartas","Mapas"],
       // Show a checkbox next to non-exclusive group labels for toggling all
@@ -167,7 +167,7 @@
     };
 	
 	var control = L.control.groupedLayers(overlayLayers, groupedOverlays,options)
-	control.addTo(map);
+	control.addTo(map);*/
 
 		L.control.sideBySide
 		(
