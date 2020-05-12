@@ -143,7 +143,6 @@
 		}
 		
 		////
-		// The tree containing the layers
         var baseTree = [
             {
                 label: 'Cartas',
@@ -176,29 +175,30 @@
 		var oS = new L.Control.opacitySlider();
 		map.addControl(oS);
 		oS.setOpacityLayer(oneHundredLayer);
-		map.on('baselayerchange', function() 
+		
+		map.on('baselayerchange', function(e) 
 			{
-				if (control.getActiveBaseLayer().name == "1:500.000")
+				if (e.name == "1")
 				{
 					oS.setOpacityLayer(fiveHundredLayer);
 					
 				}
-				else if (control.getActiveBaseLayer().name == "1:100.000")
+				else if (e.name == "0")
 				{
 				
 					oS.setOpacityLayer(oneHundredLayer);
 				}
-				else if (control.getActiveBaseLayer().name == "1760")
+				else if (e.name == "3")
 				{
 				
 					oS.setOpacityLayer(tile1760);
 				}
-				else if (control.getActiveBaseLayer().name == "1865")
+				else if (e.name == "4")
 				{
 				
 					oS.setOpacityLayer(tile1865);
 				}
-				else if (control.getActiveBaseLayer().name == "1881")
+				else if (e.name == "5")
 				{
 				
 					oS.setOpacityLayer(tile1881);
@@ -208,9 +208,9 @@
 				
 					oS.setOpacityLayer(tile1750);
 				}
+				
 			}
 		 );
- 
 	</script>
 </body>
 </html>
