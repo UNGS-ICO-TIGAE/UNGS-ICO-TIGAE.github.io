@@ -126,6 +126,15 @@
 				tms: false
 			}
 		);
+		
+		var tile1732 = L.tileLayer
+		(
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/JR1732/{z}/{x}/{y}.png', 
+			{
+		
+				tms: false
+			}
+		);
 
 		var overlayLayers =
 		{
@@ -134,12 +143,13 @@
 		
 		var  baseLayers = 
 		{
-			'1:500.000': fiveHundredLayer,
-			'1:100.000': oneHundredLayer,
-			'1760': tile1760,
-			'1865': tile1865,
-			'1881': tile1881,
-			'1750': tile1750,
+			'1:500.000': fiveHundredLayer, //0
+			'1:100.000': oneHundredLayer, //1
+			'1760': tile1760, //4
+			'1865': tile1865, //5
+			'1881': tile1881, //6
+			'1750': tile1750, //3
+			'1732': tile1732 //2
 		}
 		
 		////
@@ -154,6 +164,7 @@
             {
                 label: 'Mapas',
                 children: [
+					{label: '1732', layer: tile1732},
 					{label: '1750', layer: tile1750},
                     {label: '1760', layer: tile1760},
                     {label: '1865', layer: tile1865},
@@ -188,25 +199,30 @@
 				
 					oS.setOpacityLayer(oneHundredLayer);
 				}
-				else if (e.name == "3")
+				else if (e.name == "4")
 				{
 				
 					oS.setOpacityLayer(tile1760);
 				}
-				else if (e.name == "4")
+				else if (e.name == "5")
 				{
 				
 					oS.setOpacityLayer(tile1865);
 				}
-				else if (e.name == "5")
+				else if (e.name == "6")
 				{
 				
 					oS.setOpacityLayer(tile1881);
 				}
-				else
+				else if (e.name == "3")
 				{
 				
 					oS.setOpacityLayer(tile1750);
+				}
+				else
+				{
+				
+					oS.setOpacityLayer(tile1732);
 				}
 				
 			}
