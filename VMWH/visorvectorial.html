@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head lang="es">
+	<title>Producto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="UTF-8" />
+	<!-- 
+		(c)2019 Universidad Nacional de General Sarmiento, 
+		Instituto del Conurbano, 
+		Tecnologías de la Información Geográfica y Análisis Espacial 
+		por Carlos N. Jiménez | cnjimenez @ ungs . edu . ar
+		-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" crossorigin=""/>
+	<link rel="stylesheet" href="css/L.Control.Layers.Tree.css" />
+	<style>
+			html, body, #map {margin: 0;height: 100%;width: 100vw;} 
+			.legend { text-align: left; line-height: 12px; color: #000; } 
+			.legend i { width: 12px; height: 12px; float: left; margin-left: 4px;margin-right: 8px; } 
+			.info { 
+				padding: 6px 8px; 
+				font: 14px sans-serif; 
+				background: white; 
+				background: rgba(255,255,255,1); 
+				border: 2px solid rgba(0, 0, 0, 0.2); 
+				border-radius: 5px; 
+				} 
+			.info h4 { margin: 0 0 5px; color: #000; }
+			.logo {
+			padding: 6px 8px;
+				position:fixed; 
+				border: 2px solid rgba(0, 0, 0, 0.2); 
+				border-radius: 5px;
+				color: #333; 
+				background: #fff; 
+				left: 8px;
+				bottom:8px; /*Abajo deje un espacio de 0px*/
+				z-index:0;
+				}
+			
+	</style>
+</head>
+<body>
+	<div id="map" ></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" crossorigin=""></script>
+    <script src="js/L.Control.Layers.Tree.js"></script>
+	<script src="js/2760-CorrientesDeAgua.js"></script>
+	<script src="js/2760-CorrientesDeAguaP.js"></script>
+	<script src="js/2554-CorrientesDeAgua.js"></script>
+	<script src="js/2554-CorrientesDeAguaP.js"></script>
+	<script src="js/2960-CorrientesDeAgua.js"></script>
+	<script src="js/2554-RedVial.js"></script>
+	<script>		
+
+		var map = L.map
+		(
+			'map', 
+			{
+				maxZoom : 15,
+				minZoom : 1,
+				inertia : false,
+			}
+		).setView([-27.386414, -55.907229], 8),info = L.control();logo = L.control();
+		
+		var OSM = L.tileLayer
+		(
+			'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', 
+			{
+				maxZoom: 15,
+				attribution: '&copy; 2019 <a href="#">UNGS/UFRJ/OSM</a>'
+			}
+		)
+		.addTo(map);
+
+		var BWM = L.tileLayer
+		(
+			'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', 
+			{
+				maxZoom: 15,
+				attribution: '&copy; 2019 <a href="#">UNGS/UFRJ/OSM</a>'
+			}
+		)
+		//.addTo(map);
+		//var v2960cda = L.geoJSON(corrientesDeAgua);
+		var v2554cda = L.geoJson(CorrientesDeAgua2554, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2554cdap = L.geoJson(CorrientesDeAguaP2554, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2960cda = L.geoJson(CorrientesDeAgua2960, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2760cda = L.geoJson(CorrientesDeAgua2760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2760cdap = L.geoJson(CorrientesDeAguaP2760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2554rv = L.geoJson(RedVial2554, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		////
+        var baseTree = [
+			{
+                label: 'Mapa Base',
+                children: [
+                    {label: 'Color', layer: OSM, name: ''},
+                    {label: 'Gris', layer: BWM, name: ''}
+                ]
+            },
+		];
+		
+		var overlaysTree = {
+            label: 'Capas',
+            selectAllCheckbox: 'Un/select all',
+            children: [
+                //{label: '<div id="onlysel">-Show only selected-</div>'},
+                {label: 'Hidrología', selectAllCheckbox: true, children: [
+                    {label: '2760', layer: v2760cda},
+                    {label: '2760', layer: v2760cdap},
+					{label: '2554', layer: v2554cda},
+					{label: '2554', layer: v2554cdap},
+					{label: '2960', layer: v2960cda},
+                    //{label: 'Toulouse', layer: L.marker([43.629, 1.364])},
+                ]},
+                {label: 'Vias de comunicación', selectAllCheckbox: true, children: [
+                    {label: '2554', layer: v2554rv},
+                    //{label: 'Cologne', layer: L.marker([50.866, 7.143])},
+                    //{label: 'Hamburg', layer: L.marker([53.630, 9.988])},
+                    //{label: 'Munich', layer: L.marker([48.354, 11.786])},
+                ]},
+                /*{label: 'Otros',
+                    selectAllCheckbox: 'De/seleccionar todo',
+                    children: [
+                        //{label: 'Madrid', layer: L.marker([40.472, -3.561])},
+                        {label: 'Andalucia', selectAllCheckbox: true, children: [
+                            {label: 'Granada', layer: v2960cda},
+                            {label: 'Málaga', layer: v2960cda},
+                            {label: 'Sevilla', layer: v2960cda},
+                        ]},
+                        {label: 'Bask Country', children: [
+                            {label: '---', layer: L.layerGroup([]), radioGroup: 'bc'},
+                            {label: 'Bilbao', layer: L.marker([43.301, -2.911]), radioGroup: 'bc'},
+                            {label: 'San Sebastian', layer: L.marker([43.356, -1.791]), radioGroup: 'bc'},
+                            {label: 'Vitoria', layer: L.marker([42.883, -2.724]), radioGroup: 'bc'},
+                        ]},
+                        {label: 'Catalonia', children: [
+                            {label: 'Barcelona', layer: L.marker([41.297, 2.078])},
+                            {label: 'Gerona', layer: L.marker([41.901, 2.760])},
+                        ]},
+                    ],
+                }*/,
+            ]
+        }
+		
+		
+		
+		
+		////
+		function layerConstructor(e){
+		info.onAdd=function(e){
+		return this._div=L.DomUtil.create("div","info"),this.update(),this._div
+		},
+		info.update=function(e){
+		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2>"
+		};
+		info.addTo(map);
+		
+		logo.onAdd=function(e){
+		return this._div=L.DomUtil.create("div","logo"),this.update(),this._div
+		},
+		logo.update=function(e){
+		this._div.innerHTML="<img src='logo.png' alt=''>"
+		};
+		logo.addTo(map);
+		
+		e = L.control.layers.tree(baseTree, overlaysTree,
+            {
+                namedToggle: true,
+                selectorBack: false,
+                closedSymbol: '+',
+                openedSymbol: '-',
+                //collapseAll: 'Contraer todos',
+                //expandAll: 'Expandir todos',
+                collapsed: false,
+            }).addTo(map);
+
+        //lay.addTo(map).collapseTree().expandSelected().collapseTree(true);
+       
+		
+		L.DomEvent.on(L.DomUtil.get('onlysel'), 'click', function() {
+            lay.collapseTree(true).expandSelected(true);
+        });
+		
+		};
+		var lay;
+		layerConstructor(lay);
+		
+	</script>
+	
+</body>
+</html>
