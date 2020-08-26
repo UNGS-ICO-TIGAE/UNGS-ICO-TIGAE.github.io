@@ -9,31 +9,67 @@
 		Instituto del Conurbano, 
 		Tecnologías de la Información Geográfica y Análisis Espacial 
 		por Carlos N. Jiménez | cnjimenez @ ungs . edu . ar
+		<link rel="stylesheet" href="leaflet.css" />
+		<script src="leaflet.js"></script>
+		
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" crossorigin=""/>
 		-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="leaflet.css" />
+<link rel="stylesheet" href="css/L.Control.Layers.Tree.css" />
+	<link rel="stylesheet" href="css/leaflet.css" />
+	
 	<link rel="stylesheet" href="Control.Opacity.css">
     <link rel="stylesheet" href="jquery-ui-1.10.3.custom.min.css" />
 	
 	<style>
 			body {padding: 0;margin: 0;}
 			html, body, #map {height: 100%;}
+			.legend { text-align: left; line-height: 12px; color: #000; } 
+			.legend i { width: 12px; height: 12px; float: left; margin-left: 4px;margin-right: 8px; } 
+			.info { 
+				padding: 6px 8px; 
+				font: 14px sans-serif; 
+				background: white; 
+				background: rgba(255,255,255,1); 
+				border: 2px solid rgba(0, 0, 0, 0.2); 
+				border-radius: 5px; 
+				} 
+			.info h4 { margin: 0 0 5px; color: #000; }
+			.logo {
+			padding: 6px 8px;
+				position:fixed; 
+				border: 2px solid rgba(0, 0, 0, 0.2); 
+				border-radius: 5px;
+				color: #333; 
+				background: #fff; 
+				left: 8px;
+				bottom:8px; /*Abajo deje un espacio de 0px*/
+				z-index:0;
+				}
 	</style>
 	
-	<script src="jquery-1.9.1.js"></script>
-    <script src="jquery-ui-1.10.3.custom.min.js"></script>
 	
-	<script src="leaflet.js"></script>
-	<script src="Control.Opacity.js"></script>
-	<script src="leaflet-side-by-side.js"></script>
-	<script src="ActiveLayers.js"></script>
 </head>
 <body>
 	<div id="map" style="width: 100%; height: 100%;"></div>
-<link rel="stylesheet" href="L.Control.Layers.Tree.css" />
-    <script src="L.Control.Layers.Tree.js"></script>
+
 	
-	
+	<script src="jquery-1.9.1.js"></script>
+    <script src="jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" crossorigin=""></script>
+	<script src="L.Control.Layers.Tree.js"></script>
+	<script src="Control.Opacity.js"></script>
+	<script src="leaflet-side-by-side.js"></script>
+	<script src="ActiveLayers.js"></script>
+	<script src="js/1922-asentamiento_humano.js"></script>
+	<script src="js/1881-asentamiento_humano.js"></script>
+	<script src="js/1865-asentamiento_humano.js"></script>
+	<script src="js/1812-asentamiento_humano.js"></script>
+	<script src="js/1796-asentamiento_humano.js"></script>
+	<script src="js/1760-asentamiento_humano.js"></script>
+	<script src="js/1750-asentamiento_humano.js"></script>
+	<script src="js/1747-asentamiento_humano.js"></script>
+	<script src="js/1732-asentamiento_humano.js"></script>
 	<div style="position: absolute;padding: 6px 6px 1px 6px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);border-radius: 5px;color: #333; background: #fff; left: 24px; bottom: 24px;"><a href="#"><img src="logo.png" alt=""></a></div>
 	<div style="position: absolute; right: 24px; top: 24px;">
 	<script>		
@@ -135,10 +171,103 @@
 				tms: false
 			}
 		);
-
+		
+		var v1732ah = L.geoJson(ah1732, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup("ID" + feature.properties.id + " "+feature.properties.FNA);
+			}
+		});
+		
+		var v1747ah = L.geoJson(ah1747, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1750ah = L.geoJson(ah1750, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760ah = L.geoJson(ah1760, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1796ah = L.geoJson(ah1796, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1812ah = L.geoJson(ah1812, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1865ah = L.geoJson(ah1865, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1881ah = L.geoJson(ah1881, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1922ah = L.geoJson(ah1922, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
 		var overlayLayers =
 		{
-			'Comparar': OSM
+			'Comparar': OSM,
+			label: 'Asentamientos', selectAllCheckbox: true, children: [
+                    {label: '1732', layer: v1732ah},
+                    {label: '1747', layer: v1747ah},
+					{label: '1750', layer: v1750ah},
+					{label: '1760', layer: v1760ah},
+					{label: '1796', layer: v1796ah},
+					{label: '1812', layer: v1812ah},
+					{label: '1865', layer: v1865ah},
+					{label: '1881', layer: v1881ah},
+					{label: '1922', layer: v1922ah},
+                    //{label: 'Toulouse', layer: L.marker([43.629, 1.364])},
+                ]
 		}
 		
 		var  baseLayers = 
@@ -168,15 +297,17 @@
 					{label: '1750', layer: tile1750},
                     {label: '1760', layer: tile1760},
                     {label: '1865', layer: tile1865},
-					{label: '1881', layer: tile1881}
+					{label: '1881', layer: tile1881},
+					
                 ]
             },
+			
         ];
 
 		////
 		var control = L.control.activeLayers(baseLayers,overlayLayers)
 		//control.addTo(map);
-		L.control.layers.tree(baseTree).addTo(map);
+		L.control.layers.tree(baseTree,overlayLayers).addTo(map);
 		L.control.sideBySide
 		(
 			baseTree,
@@ -227,6 +358,46 @@
 				
 			}
 		 );
+		 
+		 ////
+		function layerConstructor(e){
+		info.onAdd=function(e){
+		return this._div=L.DomUtil.create("div","info"),this.update(),this._div
+		},
+		info.update=function(e){
+		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2>"
+		};
+		info.addTo(map);
+		
+		logo.onAdd=function(e){
+		return this._div=L.DomUtil.create("div","logo"),this.update(),this._div
+		},
+		logo.update=function(e){
+		this._div.innerHTML="<img src='logo.png' alt=''>"
+		};
+		logo.addTo(map);
+		
+		e = L.control.layers.tree(baseTree, overlaysTree,
+            {
+                namedToggle: true,
+                selectorBack: false,
+                closedSymbol: '+',
+                openedSymbol: '-',
+                //collapseAll: 'Contraer todos',
+                //expandAll: 'Expandir todos',
+                collapsed: false,
+            }).addTo(map);
+
+        //lay.addTo(map).collapseTree().expandSelected().collapseTree(true);
+       
+		
+		L.DomEvent.on(L.DomUtil.get('onlysel'), 'click', function() {
+            lay.collapseTree(true).expandSelected(true);
+        });
+		
+		};
+		var lay;
+		layerConstructor(lay);
 	</script>
 </body>
 </html>
