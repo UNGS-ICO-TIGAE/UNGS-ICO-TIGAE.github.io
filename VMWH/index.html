@@ -172,12 +172,14 @@
 			}
 		);
 		
+		
+		
 		var v1732ah = L.geoJson(ah1732, {
 			style: function (feature) {
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup("ID" + feature.properties.id + " "+feature.properties.FNA);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -186,7 +188,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -195,7 +197,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -204,7 +206,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -213,7 +215,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -222,7 +224,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -231,7 +233,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -240,7 +242,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
@@ -249,7 +251,7 @@
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.description);
+				layer.bindPopup(feature.properties.FNA);
 			}
 		});
 		
