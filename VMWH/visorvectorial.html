@@ -45,18 +45,39 @@
     <script src="js/L.Control.Layers.Tree.js"></script>
 	<script src="js/1732-CorrientesDeAgua.js"></script>
 	<script src="js/1732-CorrientesDeAguaP.js"></script>
+	<script src="js/1732-RedVial.js"></script>
 	<script src="js/1750-CorrientesDeAgua.js"></script>
 	<script src="js/1750-CorrientesDeAguaP.js"></script>
 	<script src="js/1760-CorrientesDeAgua.js"></script>
 	<script src="js/1760-CorrientesDeAguaP.js"></script>
+	<script src="js/1760-RedVial.js"></script>
+	<script src="js/1865-CorrientesDeAgua.js"></script>
+	<script src="js/1865-CorrientesDeAguaP.js"></script>
+	<script src="js/1865-RedVial.js"></script>
 	<script src="js/1881-CorrientesDeAgua.js"></script>
 	<script src="js/1881-CorrientesDeAguaP.js"></script>
+	<script src="js/1881-RedVial.js"></script>
+	<script src="js/2754-CorrientesDeAgua.js"></script>
+	<script src="js/2754-CorrientesDeAguaP.js"></script>
+	<script src="js/2754-RedVial.js"></script>
+	<script src="js/2754-Limites.js"></script>
+	<script src="js/2754-Islas.js"></script>
+	<script src="js/2757-CorrientesDeAgua.js"></script>
+	<script src="js/2757-CorrientesDeAguaP.js"></script>
+	<script src="js/2757-RedVial.js"></script>
 	<script src="js/2760-CorrientesDeAgua.js"></script>
 	<script src="js/2760-CorrientesDeAguaP.js"></script>
+	<script src="js/2760-RedVial.js"></script>
 	<script src="js/2554-CorrientesDeAgua.js"></script>
 	<script src="js/2554-CorrientesDeAguaP.js"></script>
-	<script src="js/2960-CorrientesDeAgua.js"></script>
 	<script src="js/2554-RedVial.js"></script>
+	<script src="js/2554-Limites.js"></script>
+	<script src="js/2554-Islas.js"></script>
+	<script src="js/2957-CorrientesDeAgua.js"></script>
+	<script src="js/2957-CorrientesDeAguaP.js"></script>
+	<script src="js/2960-CorrientesDeAgua.js"></script>
+	<script src="js/2960-CorrientesDeAguaP.js"></script>
+
 	<script>		
 
 		var map = L.map
@@ -68,6 +89,8 @@
 				inertia : false,
 			}
 		).setView([-27.386414, -55.907229], 8),info = L.control();logo = L.control();
+		
+		
 		
 		var OSM = L.tileLayer
 		(
@@ -101,6 +124,15 @@
 		var v1732cdap = L.geoJson(CorrientesDeAguaP1732, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1732rv = L.geoJson(RedVial1732, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.description);
@@ -143,6 +175,42 @@
 			}
 		});
 		
+		var v1760rv = L.geoJson(RedVial1760, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1865cda = L.geoJson(CorrientesDeAgua1865, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1865cdap = L.geoJson(CorrientesDeAguaP1865, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+			var v1865rv = L.geoJson(RedVial1865, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
 		//---
 		var v1881cda = L.geoJson(CorrientesDeAgua1881, {
 			style: function (feature) {
@@ -155,6 +223,14 @@
 		var v1881cdap = L.geoJson(CorrientesDeAguaP1881, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+			var v1881rv = L.geoJson(RedVial1881, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.description);
@@ -179,8 +255,137 @@
 			}
 		});
 		
+		var v2754cda = L.geoJson(CorrientesDeAgua2754, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v2754cdap = L.geoJson(CorrientesDeAguaP2754, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+			var v2754rv = L.geoJson(RedVial2754, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2754l = L.geoJson(Limites2754, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1,dashArray: '5, 5, 1, 5'};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2554l = L.geoJson(Limites2554, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1,dashArray: '5, 5, 1, 5'};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2754i = L.geoJson(Islas2754, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		//var baseballIcon = L.icon({
+		//iconUrl: 'baseball-marker.png',
+		//iconSize: [32, 37],
+		//iconAnchor: [16, 37],
+		//popupAnchor: [0, -28]
+		//});
+        //
+		//var v2754i = L.geoJson(Islas2754, {
+		//pointToLayer: function (feature, latlng) {
+		//	return L.marker(latlng, {icon: baseballIcon});
+		//},
+		//onEachFeature: function (feature, layer) {
+		//		layer.bindPopup(feature.properties.description);
+		//	}
+		//});
+
+		
+		var v2554i = L.geoJson(Islas2554, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v2957cda = L.geoJson(CorrientesDeAgua2957, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v2957cdap = L.geoJson(CorrientesDeAguaP2957, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2757cda = L.geoJson(CorrientesDeAgua2757, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v2757cdap = L.geoJson(CorrientesDeAguaP2757, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v2757rv = L.geoJson(RedVial2757, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		
 		//--
 		var v2960cda = L.geoJson(CorrientesDeAgua2960, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2960cdap = L.geoJson(CorrientesDeAguaP2960, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
 			},
@@ -201,6 +406,15 @@
 		var v2760cdap = L.geoJson(CorrientesDeAguaP2760, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+			var v2760rv = L.geoJson(RedVial2760, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
 			},
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.description);
@@ -235,25 +449,51 @@
                 {label: 'Hidrología', selectAllCheckbox: true, children: [
                     {label: '1732', layer: v1732cda},
                     {label: '1732', layer: v1732cdap},
+					
 					{label: '1750', layer: v1750cda},
                     {label: '1750', layer: v1750cdap},
 					{label: '1760', layer: v1760cda},
                     {label: '1760', layer: v1760cdap},
+					{label: '1865', layer: v1865cda},
+                    {label: '1865', layer: v1865cdap},
 					{label: '1881', layer: v1881cda},
                     {label: '1881', layer: v1881cdap},
+					{label: '2754', layer: v2754cda},
+                    {label: '2754', layer: v2754cdap},
 					{label: '2760', layer: v2760cda},
                     {label: '2760', layer: v2760cdap},
 					{label: '2554', layer: v2554cda},
 					{label: '2554', layer: v2554cdap},
+					{label: '2757', layer: v2757cda},
+					{label: '2757', layer: v2757cdap},
+					{label: '2957', layer: v2957cda},
+					{label: '2957', layer: v2957cdap},
 					{label: '2960', layer: v2960cda},
+					{label: '2960', layer: v2960cdap},
                     //{label: 'Toulouse', layer: L.marker([43.629, 1.364])},
                 ]},
                 {label: 'Vias de comunicación', selectAllCheckbox: true, children: [
                     {label: '2554', layer: v2554rv},
+					{label: '2754', layer: v2754rv},
+					{label: '2757', layer: v2757rv},
+					{label: '2760', layer: v2760rv},
+					{label: '1732', layer: v1732rv},
+					{label: '1760', layer: v1760rv},
+					{label: '1865', layer: v1865rv},
+					{label: '1881', layer: v1881rv},
                     //{label: 'Cologne', layer: L.marker([50.866, 7.143])},
                     //{label: 'Hamburg', layer: L.marker([53.630, 9.988])},
                     //{label: 'Munich', layer: L.marker([48.354, 11.786])},
                 ]},
+				{label: 'Límites', selectAllCheckbox: true, children: [
+                    {label: '2554', layer: v2554l},
+					{label: '2754', layer: v2754l},
+				]},
+				{label: 'Islas', selectAllCheckbox: true, children: [
+                    {label: '2554', layer: v2554i},
+					{label: '2754', layer: v2754i},
+				]},
+			
                 /*{label: 'Otros',
                     selectAllCheckbox: 'De/seleccionar todo',
                     children: [
