@@ -43,6 +43,14 @@
 	<div id="map" ></div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" crossorigin=""></script>
     <script src="js/L.Control.Layers.Tree.js"></script>
+	<script src="js/1732-CorrientesDeAgua.js"></script>
+	<script src="js/1732-CorrientesDeAguaP.js"></script>
+	<script src="js/1750-CorrientesDeAgua.js"></script>
+	<script src="js/1750-CorrientesDeAguaP.js"></script>
+	<script src="js/1760-CorrientesDeAgua.js"></script>
+	<script src="js/1760-CorrientesDeAguaP.js"></script>
+	<script src="js/1881-CorrientesDeAgua.js"></script>
+	<script src="js/1881-CorrientesDeAguaP.js"></script>
 	<script src="js/2760-CorrientesDeAgua.js"></script>
 	<script src="js/2760-CorrientesDeAguaP.js"></script>
 	<script src="js/2554-CorrientesDeAgua.js"></script>
@@ -81,7 +89,7 @@
 		)
 		//.addTo(map);
 		//var v2960cda = L.geoJSON(corrientesDeAgua);
-		var v2554cda = L.geoJson(CorrientesDeAgua2554, {
+		var v1732cda = L.geoJson(CorrientesDeAgua1732, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
 			},
@@ -90,6 +98,78 @@
 			}
 		});
 		
+		var v1732cdap = L.geoJson(CorrientesDeAguaP1732, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1750cda = L.geoJson(CorrientesDeAgua1750, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1750cdap = L.geoJson(CorrientesDeAguaP1750, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760cda = L.geoJson(CorrientesDeAgua1760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760cdap = L.geoJson(CorrientesDeAguaP1760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		//---
+		var v1881cda = L.geoJson(CorrientesDeAgua1881, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v1881cdap = L.geoJson(CorrientesDeAguaP1881, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		//---
+		var v2554cda = L.geoJson(CorrientesDeAgua2554, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
 		var v2554cdap = L.geoJson(CorrientesDeAguaP2554, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
@@ -99,6 +179,7 @@
 			}
 		});
 		
+		//--
 		var v2960cda = L.geoJson(CorrientesDeAgua2960, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
@@ -152,7 +233,15 @@
             children: [
                 //{label: '<div id="onlysel">-Show only selected-</div>'},
                 {label: 'Hidrología', selectAllCheckbox: true, children: [
-                    {label: '2760', layer: v2760cda},
+                    {label: '1732', layer: v1732cda},
+                    {label: '1732', layer: v1732cdap},
+					{label: '1750', layer: v1750cda},
+                    {label: '1750', layer: v1750cdap},
+					{label: '1760', layer: v1760cda},
+                    {label: '1760', layer: v1760cdap},
+					{label: '1881', layer: v1881cda},
+                    {label: '1881', layer: v1881cdap},
+					{label: '2760', layer: v2760cda},
                     {label: '2760', layer: v2760cdap},
 					{label: '2554', layer: v2554cda},
 					{label: '2554', layer: v2554cdap},
