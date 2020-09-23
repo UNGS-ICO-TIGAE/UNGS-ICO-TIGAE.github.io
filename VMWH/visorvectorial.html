@@ -62,6 +62,7 @@
 	<script src="js/2754-RedVial.js"></script>
 	<script src="js/2754-Limites.js"></script>
 	<script src="js/2754-Islas.js"></script>
+	<script src="js/2754-Ferrocarril.js"></script>
 	<script src="js/2757-CorrientesDeAgua.js"></script>
 	<script src="js/2757-CorrientesDeAguaP.js"></script>
 	<script src="js/2757-RedVial.js"></script>
@@ -73,10 +74,14 @@
 	<script src="js/2554-RedVial.js"></script>
 	<script src="js/2554-Limites.js"></script>
 	<script src="js/2554-Islas.js"></script>
+	<script src="js/2554-Ferrocarril.js"></script>
 	<script src="js/2957-CorrientesDeAgua.js"></script>
 	<script src="js/2957-CorrientesDeAguaP.js"></script>
+	<script src="js/2957-Ferrocarril.js"></script>
+	<script src="js/2957-RedVial.js"></script>
 	<script src="js/2960-CorrientesDeAgua.js"></script>
 	<script src="js/2960-CorrientesDeAguaP.js"></script>
+	<script src="js/2960-Ferrocarril.js"></script>
 
 	<script>		
 
@@ -298,6 +303,54 @@
 			}
 		});
 		
+		var v2554f1 = L.geoJson(Ferrocarril2554, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:3,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		
+		
+		var v2554f2 = L.geoJson(Ferrocarril2554, {
+			style: function (feature) {
+				return {color: "#ffffff" ,weight:1.5,opacity:1,dashArray: '10, 1, 10, 10'};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		
+		var v2754f = L.geoJson(Ferrocarril2754, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:3,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2957f = L.geoJson(Ferrocarril2957, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:3,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2960f = L.geoJson(Ferrocarril2960, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:3,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
 		var v2754i = L.geoJson(Islas2754, {
 			style: function (feature) {
 				return {color: "#00aeef" ,weight:2,opacity:1};
@@ -366,6 +419,15 @@
 			}
 		});
 		var v2757rv = L.geoJson(RedVial2757, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v2957rv = L.geoJson(RedVial2957, {
 			style: function (feature) {
 				return {color: "#000000" ,weight:2,opacity:1};
 			},
@@ -477,6 +539,7 @@
 					{label: '2754', layer: v2754rv},
 					{label: '2757', layer: v2757rv},
 					{label: '2760', layer: v2760rv},
+					{label: '2957', layer: v2957rv},
 					{label: '1732', layer: v1732rv},
 					{label: '1760', layer: v1760rv},
 					{label: '1865', layer: v1865rv},
@@ -493,7 +556,13 @@
                     {label: '2554', layer: v2554i},
 					{label: '2754', layer: v2754i},
 				]},
-			
+				
+				{label: 'Ferrocarril', selectAllCheckbox: true, children: [
+                    {label: '2554', layer: v2554f1},
+					{label: '2754', layer: v2754f},
+					{label: '2957', layer: v2957f},
+					{label: '2960', layer: v2960f},
+				]},
                 /*{label: 'Otros',
                     selectAllCheckbox: 'De/seleccionar todo',
                     children: [
