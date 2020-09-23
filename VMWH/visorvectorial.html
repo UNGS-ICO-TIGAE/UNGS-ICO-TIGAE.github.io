@@ -82,6 +82,16 @@
 	<script src="js/2960-CorrientesDeAgua.js"></script>
 	<script src="js/2960-CorrientesDeAguaP.js"></script>
 	<script src="js/2960-Ferrocarril.js"></script>
+	
+	<script src="js/1922-asentamiento_humano.js"></script>
+	<script src="js/1881-asentamiento_humano.js"></script>
+	<script src="js/1865-asentamiento_humano.js"></script>
+	<script src="js/1812-asentamiento_humano.js"></script>
+	<script src="js/1796-asentamiento_humano.js"></script>
+	<script src="js/1760-asentamiento_humano.js"></script>
+	<script src="js/1750-asentamiento_humano.js"></script>
+	<script src="js/1747-asentamiento_humano.js"></script>
+	<script src="js/1732-asentamiento_humano.js"></script>
 
 	<script>		
 
@@ -492,6 +502,73 @@
 			}
 		});
 		
+		var geojsonMarkerOptions = {
+    radius: 4,
+    fillColor: "#0000ff",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+var v1732ah = L.geoJSON(ah1732, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+	
+var v1747ah = L.geoJSON(ah1747, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1750ah = L.geoJSON(ah1750, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1760ah = L.geoJSON(ah1760, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1796ah = L.geoJSON(ah1796, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1812ah = L.geoJSON(ah1812, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1865ah = L.geoJSON(ah1865, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1881ah = L.geoJSON(ah1881, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+var v1922ah = L.geoJSON(ah1922, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+});
+
+	
+		
+		
+		
 		////
         var baseTree = [
 			{
@@ -563,6 +640,18 @@
 					{label: '2957', layer: v2957f},
 					{label: '2960', layer: v2960f},
 				]},
+				
+				{label: 'Asentamientos Humanos', selectAllCheckbox: true, children: [
+					{label: '1732', layer: v1732ah},
+                    {label: '1747', layer: v1747ah},
+					{label: '1750', layer: v1750ah},
+					{label: '1760', layer: v1760ah},
+					{label: '1796', layer: v1796ah},
+					{label: '1812', layer: v1812ah},
+					{label: '1865', layer: v1865ah},
+					{label: '1881', layer: v1881ah},
+					{label: '1922', layer: v1922ah},
+						]},
                 /*{label: 'Otros',
                     selectAllCheckbox: 'De/seleccionar todo',
                     children: [
