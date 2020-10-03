@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,7 @@
 	<script src="js/1750-asentamiento_humano.js"></script>
 	<script src="js/1747-asentamiento_humano.js"></script>
 	<script src="js/1732-asentamiento_humano.js"></script>
-	<div style="position: absolute;padding: 6px 6px 1px 6px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);border-radius: 5px;color: #333; background: #fff; left: 24px; bottom: 24px;"><a href="#"><img src="logo.png" alt=""></a></div>
+	
 	<div style="position: absolute; right: 24px; top: 24px;">
 	<script>		
 
@@ -82,7 +83,7 @@
 				minZoom : 1,
 				inertia : false,
 			}
-		).setView([-27.386414, -55.907229], 8);;
+		).setView([-27.386414, -55.907229], 8),info = L.control();logo = L.control();
 
 
 		var OSM = L.tileLayer
@@ -116,7 +117,7 @@
 			}
 	
 		)
-		.addTo(map);
+		//.addTo(map);
 
 		var fiveHundredLayer = L.tileLayer
 		(
@@ -173,85 +174,68 @@
 		);
 		
 		
-		
-		var v1732ah = L.geoJson(ah1732, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+		var geojsonMarkerOptions = {
+		radius: 8,
+		fillColor: "#00b6eba1",
+		color: "#000",
+		weight: 1,
+		opacity: 1,
+		fillOpacity: 0.8
+		};
+
+		var v1732ah = L.geoJSON(ah1732, {
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
+		
+		
 		var v1747ah = L.geoJson(ah1747, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1750ah = L.geoJson(ah1750, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1760ah = L.geoJson(ah1760, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1796ah = L.geoJson(ah1796, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1812ah = L.geoJson(ah1812, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1865ah = L.geoJson(ah1865, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1881ah = L.geoJson(ah1881, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
 		var v1922ah = L.geoJson(ah1922, {
-			style: function (feature) {
-				return {color: "#000000" ,weight:2,opacity:1};
-			},
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.FNA);
+			pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, geojsonMarkerOptions);
 			}
 		});
 		
@@ -285,13 +269,13 @@
 		
 		////
         var baseTree = [
-            {
-                label: 'Cartas',
-                children: [
-                    {label: '1:100.000', layer: oneHundredLayer, name: ''},
-                    {label: '1:500.000', layer: fiveHundredLayer, name: ''}
-                ]
-            },
+            //{
+            //    label: 'Cartas',
+            //    children: [
+            //        {label: '1:100.000', layer: oneHundredLayer, name: ''},
+            //        {label: '1:500.000', layer: fiveHundredLayer, name: ''}
+            //    ]
+            //},
             {
                 label: 'Mapas',
                 children: [
@@ -309,7 +293,7 @@
 		////
 		var control = L.control.activeLayers(baseLayers,overlayLayers)
 		//control.addTo(map);
-		L.control.layers.tree(baseTree,overlayLayers).addTo(map);
+		
 		L.control.sideBySide
 		(
 			baseTree,
@@ -378,28 +362,29 @@
 		this._div.innerHTML="<img src='logo.png' alt=''>"
 		};
 		logo.addTo(map);
-		
-		e = L.control.layers.tree(baseTree, overlaysTree,
-            {
-                namedToggle: true,
-                selectorBack: false,
-                closedSymbol: '+',
-                openedSymbol: '-',
+		L.control.layers.tree(baseTree,overlayLayers).addTo(map);
+		//e = L.control.layers.tree(baseTree, overlaysTree,
+          //  {
+          //      namedToggle: true,
+           //     selectorBack: false,
+           //     closedSymbol: '+',
+           //     openedSymbol: '-',
                 //collapseAll: 'Contraer todos',
                 //expandAll: 'Expandir todos',
-                collapsed: false,
-            }).addTo(map);
+           //     collapsed: false,
+           // }).addTo(map);
 
-        //lay.addTo(map).collapseTree().expandSelected().collapseTree(true);
-       
+        
 		
-		L.DomEvent.on(L.DomUtil.get('onlysel'), 'click', function() {
-            lay.collapseTree(true).expandSelected(true);
-        });
+		//L.DomEvent.on(L.DomUtil.get('onlysel'), 'click', function() {
+        //    lay.collapseTree(true).expandSelected(true);
+        //});
 		
 		};
 		var lay;
 		layerConstructor(lay);
+		//lay.addTo(map).collapseTree().expandSelected().collapseTree(true);
+       
 	</script>
 </body>
 </html>
