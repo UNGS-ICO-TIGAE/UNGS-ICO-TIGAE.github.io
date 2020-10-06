@@ -71,7 +71,20 @@
 	<script src="js/1750-asentamiento_humano.js"></script>
 	<script src="js/1747-asentamiento_humano.js"></script>
 	<script src="js/1732-asentamiento_humano.js"></script>
-	
+	<script src="js/1732-CorrientesDeAgua.js"></script>
+	<script src="js/1732-CorrientesDeAguaP.js"></script>
+	<script src="js/1732-RedVial.js"></script>
+	<script src="js/1750-CorrientesDeAgua.js"></script>
+	<script src="js/1750-CorrientesDeAguaP.js"></script>
+	<script src="js/1760-CorrientesDeAgua.js"></script>
+	<script src="js/1760-CorrientesDeAguaP.js"></script>
+	<script src="js/1760-RedVial.js"></script>
+	<script src="js/1865-CorrientesDeAgua.js"></script>
+	<script src="js/1865-CorrientesDeAguaP.js"></script>
+	<script src="js/1865-RedVial.js"></script>
+	<script src="js/1881-CorrientesDeAgua.js"></script>
+	<script src="js/1881-CorrientesDeAguaP.js"></script>
+	<script src="js/1881-RedVial.js"></script>
 	<div style="position: absolute; right: 24px; top: 24px;">
 	<script>		
 
@@ -174,6 +187,134 @@
 		);
 		
 		
+			var v1732cda = L.geoJson(CorrientesDeAgua1732, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1732cdap = L.geoJson(CorrientesDeAguaP1732, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1732rv = L.geoJson(RedVial1732, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1750cda = L.geoJson(CorrientesDeAgua1750, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1750cdap = L.geoJson(CorrientesDeAguaP1750, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760cda = L.geoJson(CorrientesDeAgua1760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760cdap = L.geoJson(CorrientesDeAguaP1760, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1760rv = L.geoJson(RedVial1760, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1865cda = L.geoJson(CorrientesDeAgua1865, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		var v1865cdap = L.geoJson(CorrientesDeAguaP1865, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+			var v1865rv = L.geoJson(RedVial1865, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		//---
+		var v1881cda = L.geoJson(CorrientesDeAgua1881, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		var v1881cdap = L.geoJson(CorrientesDeAguaP1881, {
+			style: function (feature) {
+				return {color: "#00aeef" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+			var v1881rv = L.geoJson(RedVial1881, {
+			style: function (feature) {
+				return {color: "#000000" ,weight:2,opacity:1};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.description);
+			}
+		});
+		
+		
+		
+		
 		var geojsonMarkerOptions = {
 		radius: 8,
 		fillColor: "#00b6eba1",
@@ -239,10 +380,13 @@
 			}
 		});
 		
-		var overlayLayers =
-		{
+		var overlayLayers = {
+		
 			'Comparar': OSM,
-			label: 'Asentamientos', selectAllCheckbox: true, children: [
+			 label: 'Capas',
+            selectAllCheckbox: 'Un/select all',
+            children: [
+			{label: 'Asentamientos', selectAllCheckbox: true, children: [
                     {label: '1732', layer: v1732ah},
                     {label: '1747', layer: v1747ah},
 					{label: '1750', layer: v1750ah},
@@ -252,9 +396,37 @@
 					{label: '1865', layer: v1865ah},
 					{label: '1881', layer: v1881ah},
 					{label: '1922', layer: v1922ah},
+					
                     //{label: 'Toulouse', layer: L.marker([43.629, 1.364])},
-                ]
+                ]},
+				{label: 'Hidrología', selectAllCheckbox: true, children: [
+                    {label: '1732', layer: v1732cda},
+                    {label: '1732', layer: v1732cdap},
+					
+					{label: '1750', layer: v1750cda},
+                    {label: '1750', layer: v1750cdap},
+					{label: '1760', layer: v1760cda},
+                    {label: '1760', layer: v1760cdap},
+					{label: '1865', layer: v1865cda},
+                    {label: '1865', layer: v1865cdap},
+					{label: '1881', layer: v1881cda},
+                    {label: '1881', layer: v1881cdap},
+				
+                    //{label: 'Toulouse', layer: L.marker([43.629, 1.364])},
+                ]},
+				{label: 'Vias de comunicación', selectAllCheckbox: true, children: [
+            
+					{label: '1732', layer: v1732rv},
+					{label: '1760', layer: v1760rv},
+					{label: '1865', layer: v1865rv},
+					{label: '1881', layer: v1881rv},
+      
+                ]},
+				]
+				
 		}
+		
+
 		
 		var  baseLayers = 
 		{
@@ -269,6 +441,9 @@
 		
 		////
         var baseTree = [
+		
+		
+		
             //{
             //    label: 'Cartas',
             //    children: [
@@ -287,6 +462,7 @@
 					
                 ]
             },
+		
 			
         ];
 
@@ -351,7 +527,7 @@
 		return this._div=L.DomUtil.create("div","info"),this.update(),this._div
 		},
 		info.update=function(e){
-		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2>"
+		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2><h3>&nbsp;&nbsp;Mapas históricos&nbsp;&nbsp;</h3>"
 		};
 		info.addTo(map);
 		

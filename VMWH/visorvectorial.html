@@ -125,6 +125,30 @@
 				attribution: '&copy; 2019 <a href="#">UNGS/UFRJ/OSM</a>'
 			}
 		)
+		
+		var oneHundredLayer = L.tileLayer
+		(
+			
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/1-100K/{z}/{x}/{y}.png', 
+			{
+
+				tms: true
+			}
+	
+		)
+		//.addTo(map);
+
+		var fiveHundredLayer = L.tileLayer
+		(
+			'https://ungs-ico-tigae.github.io/VMWH/Tiles/1-500K/{z}/{x}/{y}.png', 
+			{
+		
+				tms: false
+			}
+		);
+		
+		
+		
 		//.addTo(map);
 		//var v2960cda = L.geoJSON(corrientesDeAgua);
 		var v1732cda = L.geoJson(CorrientesDeAgua1732, {
@@ -571,12 +595,20 @@ var v1922ah = L.geoJSON(ah1922, {
 		
 		////
         var baseTree = [
-			{
-                label: 'Mapa Base',
+		
+			//{
+             //   label: 'Mapa Base',
+             //   children: [
+             //       {label: 'Color', layer: OSM, name: ''},
+             //       {label: 'Gris', layer: BWM, name: ''}
+             //   ]
+           // },
+		      {
+                label: 'Cartas',
                 children: [
-                    {label: 'Color', layer: OSM, name: ''},
-                    {label: 'Gris', layer: BWM, name: ''}
-                ]
+                    {label: '1:100.000', layer: oneHundredLayer, name: ''},
+                    {label: '1:500.000', layer: fiveHundredLayer, name: ''}
+               ]
             },
 		];
 		
@@ -586,17 +618,17 @@ var v1922ah = L.geoJSON(ah1922, {
             children: [
                 //{label: '<div id="onlysel">-Show only selected-</div>'},
                 {label: 'Hidrología', selectAllCheckbox: true, children: [
-                    {label: '1732', layer: v1732cda},
-                    {label: '1732', layer: v1732cdap},
+                  //  {label: '1732', layer: v1732cda},
+                  //  {label: '1732', layer: v1732cdap},
 					
-					{label: '1750', layer: v1750cda},
-                    {label: '1750', layer: v1750cdap},
-					{label: '1760', layer: v1760cda},
-                    {label: '1760', layer: v1760cdap},
-					{label: '1865', layer: v1865cda},
-                    {label: '1865', layer: v1865cdap},
-					{label: '1881', layer: v1881cda},
-                    {label: '1881', layer: v1881cdap},
+					//{label: '1750', layer: v1750cda},
+                   // {label: '1750', layer: v1750cdap},
+					//{label: '1760', layer: v1760cda},
+                   // {label: '1760', layer: v1760cdap},
+					//{label: '1865', layer: v1865cda},
+                    //{label: '1865', layer: v1865cdap},
+					//{label: '1881', layer: v1881cda},
+                    //{label: '1881', layer: v1881cdap},
 					{label: '2754', layer: v2754cda},
                     {label: '2754', layer: v2754cdap},
 					{label: '2760', layer: v2760cda},
@@ -617,10 +649,10 @@ var v1922ah = L.geoJSON(ah1922, {
 					{label: '2757', layer: v2757rv},
 					{label: '2760', layer: v2760rv},
 					{label: '2957', layer: v2957rv},
-					{label: '1732', layer: v1732rv},
-					{label: '1760', layer: v1760rv},
-					{label: '1865', layer: v1865rv},
-					{label: '1881', layer: v1881rv},
+					//{label: '1732', layer: v1732rv},
+					//{label: '1760', layer: v1760rv},
+					//{label: '1865', layer: v1865rv},
+					//{label: '1881', layer: v1881rv},
                     //{label: 'Cologne', layer: L.marker([50.866, 7.143])},
                     //{label: 'Hamburg', layer: L.marker([53.630, 9.988])},
                     //{label: 'Munich', layer: L.marker([48.354, 11.786])},
@@ -641,17 +673,17 @@ var v1922ah = L.geoJSON(ah1922, {
 					{label: '2960', layer: v2960f},
 				]},
 				
-				{label: 'Asentamientos Humanos', selectAllCheckbox: true, children: [
-					{label: '1732', layer: v1732ah},
-                    {label: '1747', layer: v1747ah},
-					{label: '1750', layer: v1750ah},
-					{label: '1760', layer: v1760ah},
-					{label: '1796', layer: v1796ah},
-					{label: '1812', layer: v1812ah},
-					{label: '1865', layer: v1865ah},
-					{label: '1881', layer: v1881ah},
-					{label: '1922', layer: v1922ah},
-						]},
+				//{label: 'Asentamientos Humanos', selectAllCheckbox: true, children: [
+				//	{label: '1732', layer: v1732ah},
+                 //   {label: '1747', layer: v1747ah},
+				//	{label: '1750', layer: v1750ah},
+				//	{label: '1760', layer: v1760ah},
+				//	{label: '1796', layer: v1796ah},
+				//	{label: '1812', layer: v1812ah},
+					//{label: '1865', layer: v1865ah},
+				//	{label: '1881', layer: v1881ah},
+				//	{label: '1922', layer: v1922ah},
+						//]},
                 /*{label: 'Otros',
                     selectAllCheckbox: 'De/seleccionar todo',
                     children: [
@@ -672,7 +704,7 @@ var v1922ah = L.geoJSON(ah1922, {
                             {label: 'Gerona', layer: L.marker([41.901, 2.760])},
                         ]},
                     ],
-                }*/,
+                }*///,
             ]
         }
 		
@@ -685,7 +717,7 @@ var v1922ah = L.geoJSON(ah1922, {
 		return this._div=L.DomUtil.create("div","info"),this.update(),this._div
 		},
 		info.update=function(e){
-		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2>"
+		this._div.innerHTML="<h2>&nbsp;&nbsp;Proyecto 30-2097&nbsp;&nbsp;</h2><h3>&nbsp;&nbsp;Cartas históricas&nbsp;&nbsp;</h3>"
 		};
 		info.addTo(map);
 		
